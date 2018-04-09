@@ -1,0 +1,142 @@
+{
+ "cells": [
+  {
+   "cell_type": "code",
+   "execution_count": 1,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "ACTGTAGCTGTACGTAGC\n",
+      "ACTG\n",
+      "CTGT\n",
+      "TGTA\n",
+      "GTAG\n",
+      "TAGC\n",
+      "AGCT\n",
+      "GCTG\n",
+      "CTGT\n",
+      "TGTA\n",
+      "GTAC\n",
+      "TACG\n",
+      "ACGT\n",
+      "CGTA\n",
+      "GTAG\n",
+      "TAGC\n"
+     ]
+    }
+   ],
+   "source": [
+    "test_dna = \"ACTGTAGCTGTACGTAGC\" \n",
+    "print(test_dna) \n",
+    "kmer_size = 4 \n",
+    "for start in range(0,len(test_dna)-(kmer_size-1),1): \n",
+    "    kmer = test_dna[start:start+kmer_size] \n",
+    "    print(kmer)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 2,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "['AATG', 'ATGC', 'TGCT', 'GCTG', 'CTGC', 'TGCA', 'GCAT']\n",
+      "['AATGC', 'ATGCT', 'TGCTG', 'GCTGC', 'CTGCA', 'TGCAT']\n",
+      "['AATGCT', 'ATGCTG', 'TGCTGC', 'GCTGCA', 'CTGCAT']\n"
+     ]
+    }
+   ],
+   "source": [
+    "def split_dna(dna, kmer_size):\n",
+    "    kmers = [] \n",
+    "    for start in range(0,len(dna)-(kmer_size-1),1): \n",
+    "        kmer = dna[start:start+kmer_size] \n",
+    "        kmers.append(kmer) \n",
+    "    return kmers \n",
+    "print(split_dna(\"AATGCTGCAT\", 4))\n",
+    "print(split_dna(\"AATGCTGCAT\", 5))\n",
+    "print(split_dna(\"AATGCTGCAT\", 6))"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 17,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "reading sequences from xaa.dna\n",
+      "reading sequences from xab.dna\n",
+      "reading sequences from xac.dna\n",
+      "reading sequences from xad.dna\n",
+      "reading sequences from xae.dna\n",
+      "reading sequences from xaf.dna\n",
+      "reading sequences from xag.dna\n",
+      "reading sequences from xah.dna\n",
+      "reading sequences from xai.dna\n",
+      "reading sequences from xaj.dna\n",
+      "{'acggat': 1, 'ttcttc': 1, 'gttaac': 1, 'atccga': 1, 'gcttcc': 1, 'tcttct': 1, 'tgtatc': 1, 'aggcac': 1, 'tattct': 1, 'gattag': 1}\n"
+     ]
+    }
+   ],
+   "source": [
+    "import os\n",
+    "kmer_size = 6\n",
+    "def split_dna(dna, kmer_size):\n",
+    "    kmers = []\n",
+    "    for start in range(0,len(dna)-(kmer_size-1),1):\n",
+    "        kmer = dna[start:start+kmer_size]\n",
+    "        kmers.append(kmer)\n",
+    "    return kmers\n",
+    "kmer_counts = {}\n",
+    "for file_name in os.listdir(\".\"):\n",
+    "    if file_name.endswith(\".dna\"):\n",
+    "        print(\"reading sequences from \" + file_name)\n",
+    "        dna_file = open(file_name)\n",
+    "        for line in dna_file:\n",
+    "            dna = line.rstrip(\"\\n\")\n",
+    "        for kmer in split_dna(dna, kmer_size):\n",
+    "            current_count = kmer_counts.get(kmer, 0)\n",
+    "        new_count = current_count + 1\n",
+    "        kmer_counts[kmer] = new_count\n",
+    "print(kmer_counts)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "Python 3",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.6.3"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 2
+}

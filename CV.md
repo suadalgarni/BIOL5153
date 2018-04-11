@@ -14,7 +14,11 @@ BS. King Abdulaziz University, Jeddah , KSA
 
 Biology
 
+ 
+
 Academic Experience
+
+ 
 
 Graduate Student (PhD)
 
@@ -22,21 +26,23 @@ Fall 2014-- Ph.D. Candidate Cell & Molecular Biology program
 
 University of Arkansas, Fayetteville, AR
 
+ 
+
 Graduate Student (MS)
 
 Fall 2011- Spring 2013
 
 Quinnipiac University, Hamden,CT
 
+ 
+
 Research Interest:
 
-Microbial Ecology
+Human Gut Microbiota
 
-Microbial Genetics
+Human Nutrition
 
-Marine Biology
-
-Aquatic Microbiology
+Metabolomics
 
 Next generation sequencing
 
